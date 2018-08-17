@@ -15,6 +15,17 @@ public class Main{
     private static String translatedText;
 
     public static void main(String[] args) {
+        Main main = new Main();
+        main.showMenu();
+        translatedText = translate.translateText(rText,"en",textTranslate);
+        tText=true;
+        db.addItems(userId,rText,translatedText,tText);
+        details = db.loadTable();
+        System.out.println(details);
+        main.showMenu();
+    }
+
+    public void showMenu(){
         System.out.println("Enter user ID: " );
         userId = scanner.nextLine();
         System.out.println("Enter text to translate: ");
@@ -22,7 +33,7 @@ public class Main{
 
         System.out.println("Which language you want to translate to: ");
         System.out.println(
-                        "1) Arabic (ar)\n" +
+                "1) Arabic (ar)\n" +
                         "2) Chinese (Simplified) (zh)\n"+
                         "3) French (fr)\n"+
                         "4) German (de)\n" +
@@ -42,7 +53,7 @@ public class Main{
                     textTranslate = option.replaceAll("Arabic","ar");
                 }
                 textTranslate = option;
-            break;
+                break;
             case "Chinese":
             case "zh":
                 if(option=="Chinese"){
@@ -113,20 +124,6 @@ public class Main{
                 break;
 
         }
-
-
-        translatedText = translate.translateText(rText,"en",textTranslate);
-        tText=true;
-        db.addItems(userId,rText,translatedText,tText);
-        details = db.loadTable();
- //        db.addItems(userId,rText,translatedText);
-//        db.loadTable();
-
-
-
-//        db.addItems(userId,rText);
-//        details = db.loadTable();
-//        System.out.println(details);
     }
 
 }
